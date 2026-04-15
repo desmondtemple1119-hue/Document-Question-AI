@@ -77,8 +77,8 @@ if uploaded_file:
 
         for chunk in chunks:
             score = sum(word in chunk.lower() for word in question_words)
-                if score > 0:
-                    relevant_chunks.append((score, chunk))
+            if score > 0:
+                relevant_chunks.append((score, chunk))
 
         relevant_chunks = sorted(relevant_chunks, reverse=True)
         context = " ".join([chunk for _, chunk in relevant_chunks[:3]])
@@ -93,10 +93,10 @@ if uploaded_file:
         {question}
         """
         with st.spinner("Thinking... 🤔"):
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
-        )
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
 
         st.subheader("Answer")
         st.write(response.text)
